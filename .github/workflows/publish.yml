@@ -1,0 +1,42 @@
+name: Publish
+
+# Publishes the package to npm with a provenance statement. n8n requires
+# verified community nodes (from 2026-05-01) to be published via GitHub Actions
+# with provenance — npm packages published from a local machine are rejected.
+#
+# Trigger by pushing a semver tag, e.g. `git tag v0.1.0 && git push origin v0.1.0`.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Publish to npm with provenance
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
