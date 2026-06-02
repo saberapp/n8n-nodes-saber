@@ -1,6 +1,6 @@
 {
   "name": "@saberapp/n8n-nodes-saber",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "n8n community node for the Saber Platform API — AI-powered company and contact research signals, market signals, lists, and scoring.",
   "keywords": [
     "n8n-community-node-package",
@@ -36,6 +36,7 @@
     "lint": "eslint nodes credentials package.json",
     "lint:fix": "eslint nodes credentials package.json --fix",
     "generate": "tsx scripts/generate-operations.ts",
+    "scan": "npx --yes @n8n/scan-community-package @saberapp/n8n-nodes-saber",
     "prepublishOnly": "npm run build && eslint -c .eslintrc.prepublish.js nodes credentials package.json"
   },
   "files": [
@@ -55,6 +56,9 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
