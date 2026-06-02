@@ -51,6 +51,9 @@ export class Saber implements INodeType {
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description:
 			'Work with the Saber Platform API: company and contact research signals, market signals, lists, and scoring',
+		// Allows the node to be attached as a tool to an AI Agent. Required since
+		// n8n 2.x exposes a node as a tool only if its description sets this flag.
+		usableAsTool: true,
 		defaults: {
 			name: 'Saber',
 		},

@@ -1,6 +1,6 @@
 {
   "name": "@saberapp/n8n-nodes-saber",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "n8n community node for the Saber Platform API — AI-powered company and contact research signals, market signals, lists, and scoring.",
   "keywords": [
     "n8n-community-node-package",
